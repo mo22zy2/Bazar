@@ -12,7 +12,7 @@ class _SplachScreenState extends State<SplachScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Text("so now its splash screen"),
+      body: Text("so now its splash screen1"),
     );
   }
 }
