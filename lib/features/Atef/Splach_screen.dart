@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Image.asset("assets/images/Mainlogo.png"),
                 SizedBox(height: 20),
                 Text(
-                  "Welcome to MyApp",
+                  "Welcome to MyApp1",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
