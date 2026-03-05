@@ -10,6 +10,9 @@ class SplachScreen extends StatefulWidget {
 class _SplachScreenState extends State<SplachScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.black, body: Text("Hello"));
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Text("so now its splash screen"),
+    );
   }
 }
