@@ -1,3 +1,4 @@
+import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: MainColors.mainPurple,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
