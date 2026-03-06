@@ -1,5 +1,4 @@
-import 'package:bazar/features/islam/Confirm_Order/Confirm_Order_visaAdded.dart';
-//import 'package:bazar/features/Atef/Splach_screen.dart';
+import 'package:bazar/features/Atef/Splach_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,8 +13,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "OpenSans"),
       debugShowCheckedModeBanner: false,
-      home: ConfirmOrderVisaadded(),
-      // home: SplashScreen(),
+
+      home: SplashScreen(),
     );
   }
 }
