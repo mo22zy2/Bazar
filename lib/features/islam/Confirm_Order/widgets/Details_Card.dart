@@ -93,7 +93,7 @@ class DetailsCard extends StatelessWidget {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: MainColors.mainPurple.withOpacity(.1),
+                  color: MainColors.mainPurple.withAlpha(30),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(

@@ -48,7 +48,7 @@ class ConfirmOrderVisaadded extends StatelessWidget {
             children: [
               const SizedBox(height: 10),
 
-              /// App Bar
+            
               app_bar(
                 iconDataLeft: Icons.arrow_back_rounded,
                 namePage: "Confirm Order",
@@ -57,11 +57,11 @@ class ConfirmOrderVisaadded extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              /// Content
+               
               Expanded(
                 child: ListView(
                   children: [
-                    /// Address
+                    
                     DetailsCard(
                       title: "Address",
                       icon: Icons.location_on,
@@ -94,7 +94,7 @@ class ConfirmOrderVisaadded extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
 
-                    /// Date & Time
+                   
                     DetailsCard(
                       title: "Date and time",
                       icon: Icons.calendar_month_sharp,

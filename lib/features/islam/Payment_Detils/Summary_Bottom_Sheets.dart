@@ -36,7 +36,7 @@ void showSummarySheet(
 
             const SizedBox(height: 20),
 
-            /// PRICE (Main section)
+            /// PRICE
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -56,7 +56,7 @@ void showSummarySheet(
 
             const SizedBox(height: 10),
 
-            /// items inside price
+            /// items inside the order
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -82,7 +82,6 @@ void showSummarySheet(
             ),
             const Divider(thickness: 1.5),
 
-            /// SHIPPING
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -102,7 +101,6 @@ void showSummarySheet(
 
             const Divider(thickness: 1.5),
 
-            /// TOTAL
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

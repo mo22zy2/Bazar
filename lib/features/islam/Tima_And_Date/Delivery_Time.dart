@@ -47,7 +47,7 @@ class _DeliveryTimeSheetState extends State<DeliveryTimeSheet> {
           ),
           const SizedBox(height: 20),
 
-          /// Dates row
+          /// Dates
           Row(
             children: List.generate(
               widget.dates.length,
@@ -76,7 +76,7 @@ class _DeliveryTimeSheetState extends State<DeliveryTimeSheet> {
           ),
           const SizedBox(height: 20),
 
-          /// Times row
+          /// Times
           Row(
             children: List.generate(
               widget.times.length,
@@ -99,7 +99,6 @@ class _DeliveryTimeSheetState extends State<DeliveryTimeSheet> {
 
           const Spacer(),
 
-          /// Confirm button
           Center(
             child: MainBtm(txt: "Confirm", radius: 30, onPressed: () {}),
           ),
