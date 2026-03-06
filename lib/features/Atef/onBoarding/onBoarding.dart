@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';

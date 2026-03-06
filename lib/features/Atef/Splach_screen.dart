@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
+import 'package:bazar/features/Atef/Success/Success.dart';
 import 'package:bazar/features/Atef/onBoarding/onBoarding.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -37,10 +41,18 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    Timer(const Duration(seconds: 5), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => onBoarding()));
+    Timer(const Duration(seconds: 5), () async {
+      bool islogged = await SharedPrefs.getSignedin();
+      if (islogged) {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Success()),
+          (route) => false,
+        );
+      } else {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => onBoarding()),
+        );
+      }
     });
   }
 
