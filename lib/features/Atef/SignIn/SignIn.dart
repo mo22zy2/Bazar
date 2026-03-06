@@ -1,3 +1,4 @@
+import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/utils/validator/validator.dart';
@@ -24,13 +25,20 @@ class _SignInState extends State<SignIn> {
     super.dispose();
   }
 
-  void _onSignIn() {
+  void _onSignIn() async {
     if (_formKey.currentState!.validate()) {
+      SharedPrefs.setsignIn();
+      
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => Success()),
         (route) => false,
       );
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
