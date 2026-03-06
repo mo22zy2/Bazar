@@ -1,4 +1,6 @@
+import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:bazar/features/Atef/Splach_screen.dart';
+import 'package:bazar/features/Atef/Success/Success.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +14,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: "OpenSans"),
+      debugShowCheckedModeBanner: false,
       home: SplashScreen(),
       // home : put the splash screennnnn
     );

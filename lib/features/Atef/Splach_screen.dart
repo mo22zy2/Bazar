@@ -1,4 +1,5 @@
 import 'package:bazar/core/utils/colors/maincolors.dart';
+import 'package:bazar/features/Atef/onBoarding/onBoarding.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -36,7 +37,11 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    Timer(const Duration(seconds: 5), () {});
+    Timer(const Duration(seconds: 5), () {
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (context) => onBoarding()));
+    });
   }
 
   @override
@@ -57,15 +62,9 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset("assets/images/Mainlogo.png"),
-                SizedBox(height: 20),
-                Text(
-                  "Welcome to MyApp1",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                SizedBox(
+                  width: 300,
+                  child: Image.asset("assets/images/Mainlogo.png"),
                 ),
               ],
             ),
