@@ -5,4 +5,6 @@ class MainColors {
   static Color mainWhite = Color(0xffFAFAFA);
   static Color mainGrey = Color(0xffF5F5F5);
   static Color mainDarkGrey = Color(0xffD6D6D6);
+  static Color mainBlack = Colors.black;
+  static Color mainRed = Colors.red;
 }
