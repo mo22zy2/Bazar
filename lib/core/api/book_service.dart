@@ -25,4 +25,20 @@ class BookService {
       throw Exception('حدث خطأ أثناء الاتصال بالخادم: $e');
     }
   }
+
+  Future<List<Book>> fetchBooks() async {
+    // قمنا بإزالة sort=new لجلب نتائج متنوعة وأكبر
+    final url = Uri.parse(
+      'https://openlibrary.org/search.json?q=fiction&limit=20',
+    );
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body)['docs'];
+      return data.map((json) => Book.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load books');
+    }
+  }
 }

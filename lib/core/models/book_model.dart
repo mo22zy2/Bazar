@@ -8,12 +8,14 @@ class Book {
   final String imageUrl;
   final String author;
   final String isbn;
+  final String price;
 
   Book({
     required this.title,
     required this.imageUrl,
     required this.author,
     required this.isbn,
+    required this.price,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
@@ -23,9 +25,7 @@ class Book {
       authorName = (json['author_name'] as List).first.toString();
     }
 
-    // 2. معالجة الغلاف (هنا يكمن سر المشكلة!)
-    // Open Library تستخدم مفتاح 'cover_i' لجلب صورة الغلاف
-    String image = 'https://via.placeholder.com/150';
+    String image = '';
     if (json.containsKey('cover_i') && json['cover_i'] != null) {
       image = 'https://covers.openlibrary.org/b/id/${json['cover_i']}-L.jpg';
     } else if (json.containsKey('isbn') && (json['isbn'] as List).isNotEmpty) {
@@ -39,6 +39,7 @@ class Book {
       isbn: (json['isbn'] != null && (json['isbn'] as List).isNotEmpty)
           ? json['isbn'][0].toString()
           : '',
+      price: "\$${(10 + (json['title']?.length ?? 0) % 20).toStringAsFixed(2)}",
     );
   }
 }
@@ -55,6 +56,22 @@ class BookService {
       return data.map((json) => Book.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load books');
+    }
+  }
+
+  Future<List<Book>> fetchRecentBooks() async {
+    // هذا الرابط كمثال لجلب بيانات من Open Library، استبدله بالرابط الذي تستخدمه فعلياً
+    final url = Uri.parse(
+      'https://openlibrary.org/search.json?q=subject:fiction&sort=new&limit=10',
+    );
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body)['docs'];
+      return data.map((json) => Book.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load recent books');
     }
   }
 }

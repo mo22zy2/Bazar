@@ -93,7 +93,6 @@ class _FeaturedBooksSliderState extends State<FeaturedBooksSlider> {
           ),
         ),
         const SizedBox(height: 10),
-        // استبدل الـ Row الحالي بهذا
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(_books.take(4).length, (index) {

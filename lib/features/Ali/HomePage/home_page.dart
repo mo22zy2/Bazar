@@ -1,5 +1,6 @@
 import 'package:bazar/core/widgets/app_bar.dart';
-import 'package:bazar/features/Ali/HomePage/widget/featured_books_slider.dart';
+import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/TopOfWeekItem.dart';
+import 'package:bazar/features/Ali/HomePage/widget/offer/featured_books_slider.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -18,6 +19,7 @@ class Home_page extends StatelessWidget {
               iconDataRight: Icons.notifications_none,
             ),
             SizedBox(height: 200, child: FeaturedBooksSlider()),
+            TopOfWeekItem(),
           ],
         ),
       ),
