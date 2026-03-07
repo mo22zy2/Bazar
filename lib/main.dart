@@ -1,3 +1,4 @@
+import 'package:bazar/features/Ali/HomePage/home_page.dart';
 import 'package:bazar/features/Atef/Splach_screen.dart';
 import 'package:bazar/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(fontFamily: "OpenSans"),
       debugShowCheckedModeBanner: false,
 
-      home: SplashScreen(),
+      home: Home_page(),
     );
   }
 }
