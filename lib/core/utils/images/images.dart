@@ -8,4 +8,6 @@ class Images {
   static String pic2 =
       "assets/images/Property 1=Large, Property 2=Login with Google.png";
   static String groupps = "assets/images/Group.png";
+  static String No_notifications = "assets/images/Vector.png";
+  static String Cart_products = "assets/images/Group2.png";
 }

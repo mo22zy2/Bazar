@@ -7,8 +7,9 @@ class MainBtm extends StatelessWidget {
     required this.txt,
     required this.onPressed,
     required this.radius,
+    this.fontSize = 16,
   });
-
+  final double? fontSize;
   final String txt;
   final VoidCallback onPressed;
   final double radius;
@@ -19,6 +20,8 @@ class MainBtm extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: MainColors.mainPurple,
         fixedSize: Size(327, 56),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        visualDensity: VisualDensity.compact,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
@@ -27,7 +30,7 @@ class MainBtm extends StatelessWidget {
       child: Text(
         txt,
         style: TextStyle(
-          fontSize: 16,
+          fontSize: fontSize,
           fontWeight: FontWeight.w700,
           color: MainColors.mainWhite,
         ),
