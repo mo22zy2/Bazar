@@ -1,10 +1,21 @@
+import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
+// import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:flutter/material.dart';
 
 class Success extends StatelessWidget {
-  const Success({super.key});
+  Success({super.key});
+  final AuthService authentication = AuthService();
+
+  // void onSignOut(BuildContext context) {
+  //   authentication.signOut();
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => SignIn()),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +47,7 @@ class Success extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               child: MainBtm(txt: "Get Started", onPressed: () {}, radius: 48),
             ),
+            //    MainBtm(txt: "Sign out", onPressed: () => onSignOut(context), radius: 48),
           ],
         ),
       ),

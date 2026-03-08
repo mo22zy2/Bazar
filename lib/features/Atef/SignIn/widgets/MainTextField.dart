@@ -10,7 +10,7 @@ class Maintextfield extends StatefulWidget {
     required this.svg,
     required this.iconss,
     required this.isIcon,
-    required this.keyboared,
+    required this.keyboared, required this.controller,
   });
 
   final String hint;
@@ -21,6 +21,7 @@ class Maintextfield extends StatefulWidget {
   final bool isIcon;
   final IconData? iconss;
   final TextInputType keyboared;
+  final TextEditingController controller;
 
   @override
   State<Maintextfield> createState() => _MaintextfieldState();
@@ -54,6 +55,7 @@ class _MaintextfieldState extends State<Maintextfield> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText: _isObscure,
       obscuringCharacter: '*',
       keyboardType: widget.keyboared,
