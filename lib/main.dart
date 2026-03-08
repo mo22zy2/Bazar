@@ -18,6 +18,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "OpenSans"),
       debugShowCheckedModeBanner: false,
+
       home: SplashScreen(),
     );
   }

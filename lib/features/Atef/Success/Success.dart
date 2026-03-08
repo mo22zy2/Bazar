@@ -2,6 +2,7 @@ import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
+import 'package:bazar/features/Ali/HomePage/home_page.dart';
 // import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,16 @@ class Success extends StatelessWidget {
             SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.all(24),
-              child: MainBtm(txt: "Get Started", onPressed: () {}, radius: 48),
+              child: MainBtm(
+                txt: "Get Started",
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home_page()),
+                  );
+                },
+                radius: 48,
+              ),
             ),
             //    MainBtm(txt: "Sign out", onPressed: () => onSignOut(context), radius: 48),
           ],
