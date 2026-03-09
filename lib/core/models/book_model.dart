@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 
 // ignore: depend_on_referenced_packages
@@ -7,6 +9,7 @@ class Book {
   final String title;
   final String imageUrl;
   final String author;
+  final String authorImage;
   final String isbn;
   final String price;
 
@@ -14,15 +17,21 @@ class Book {
     required this.title,
     required this.imageUrl,
     required this.author,
+    required this.authorImage,
     required this.isbn,
     required this.price,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
-    // 1. معالجة المؤلفين
     String authorName = 'Unknown Author';
     if (json.containsKey('author_name') && json['author_name'] is List) {
       authorName = (json['author_name'] as List).first.toString();
+    }
+
+    String authorImage = '';
+    if (json['author_key'] != null && json['author_key'] is List) {
+      String authorId = json['author_key'][0];
+      authorImage = 'https://covers.openlibrary.org/a/olid/$authorId-M.jpg';
     }
 
     String image = '';
@@ -35,6 +44,7 @@ class Book {
     return Book(
       title: json['title'] ?? 'Unknown Title',
       author: authorName,
+      authorImage: authorImage,
       imageUrl: image,
       isbn: (json['isbn'] != null && (json['isbn'] as List).isNotEmpty)
           ? json['isbn'][0].toString()
@@ -60,7 +70,6 @@ class BookService {
   }
 
   Future<List<Book>> fetchRecentBooks() async {
-    // هذا الرابط كمثال لجلب بيانات من Open Library، استبدله بالرابط الذي تستخدمه فعلياً
     final url = Uri.parse(
       'https://openlibrary.org/search.json?q=subject:fiction&sort=new&limit=10',
     );

@@ -8,17 +8,21 @@ class MainBtm extends StatelessWidget {
     required this.onPressed,
     required this.radius,
     this.fontSize = 16,
+    this.bgColor,
+    this.txtColor,
   });
   final double? fontSize;
   final String txt;
+  final Color? txtColor;
   final VoidCallback onPressed;
   final double radius;
+  final Color? bgColor;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: MainColors.mainPurple,
+        backgroundColor: bgColor ?? MainColors.mainPurple,
         fixedSize: Size(327, 56),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         visualDensity: VisualDensity.compact,
@@ -32,7 +36,7 @@ class MainBtm extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.w700,
-          color: MainColors.mainWhite,
+          color: txtColor ?? MainColors.mainWhite,
         ),
       ),
     );

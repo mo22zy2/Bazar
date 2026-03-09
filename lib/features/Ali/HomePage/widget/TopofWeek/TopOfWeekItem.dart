@@ -57,7 +57,7 @@ class _TopOfWeekItemState extends State<TopOfWeekItem> {
           child: ListView.builder(
             padding: const EdgeInsets.only(left: 16),
             scrollDirection: Axis.horizontal,
-            itemCount: _books.length,
+            itemCount: _books.take(10).length,
             itemBuilder: (context, index) {
               final book = _books[index];
               return Bookitem(
