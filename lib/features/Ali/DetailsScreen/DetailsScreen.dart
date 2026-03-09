@@ -3,6 +3,7 @@ import 'package:bazar/core/widgets/MainBtn.dart';
 import 'package:bazar/features/Ali/DetailsScreen/widget/Number_book.dart';
 import 'package:bazar/features/Ali/DetailsScreen/widget/review_book.dart';
 import 'package:bazar/features/Ali/DetailsScreen/widget/title_book.dart';
+import 'package:bazar/features/islam/My_Cart/my_cart.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -85,7 +86,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Expanded(
                         child: MainBtm(
                           txt: "View cart",
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CartsPage(),
+                              ),
+                            );
+                          },
                           radius: 48,
                           bgColor: MainColors.mainGrey,
                           txtColor: MainColors.mainPurple,

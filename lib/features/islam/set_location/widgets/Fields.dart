@@ -4,15 +4,15 @@ class CustomField extends StatelessWidget {
   const CustomField({
     super.key,
     required this.label,
-
     this.required = false,
     this.keyboardType,
+    this.controller,
   });
 
   final String label;
-
   final bool required;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class CustomField extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         TextFormField(
+          controller: controller,
           keyboardType: keyboardType,
           validator: (value) {
             if (required && (value == null || value.isEmpty)) {

@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class DeliveryTimeSheet extends StatefulWidget {
   final List<String> dates;
   final List<String> times;
+  final void Function(String date, String time) onSelect;
 
   const DeliveryTimeSheet({
     super.key,
     required this.dates,
     required this.times,
+    required this.onSelect,
   });
 
   @override
@@ -19,7 +21,6 @@ class DeliveryTimeSheet extends StatefulWidget {
 class _DeliveryTimeSheetState extends State<DeliveryTimeSheet> {
   int selectedDateIndex = 0;
   int selectedTimeIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,7 +101,16 @@ class _DeliveryTimeSheetState extends State<DeliveryTimeSheet> {
           const Spacer(),
 
           Center(
-            child: MainBtm(txt: "Confirm", radius: 30, onPressed: () {}),
+            child: MainBtm(
+              txt: "Confirm",
+              radius: 30,
+              onPressed: () {
+                String date = widget.dates[selectedDateIndex];
+                String time = widget.times[selectedTimeIndex];
+                widget.onSelect(date, time);
+                Navigator.pop(context);
+              },
+            ),
           ),
         ],
       ),
