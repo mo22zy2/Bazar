@@ -1,11 +1,13 @@
-import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
+import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/utils/validator/validator.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
 import 'package:bazar/features/Atef/SignIn/widgets/MainTextField.dart';
 import 'package:bazar/features/Atef/SignUp/SignUp.dart';
-import 'package:bazar/features/Atef/Success/Success.dart';
+
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -16,22 +18,26 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _formKey = GlobalKey<FormState>();
-  final _passwordController = TextEditingController();
+  final _formKeysignin = GlobalKey<FormState>();
 
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
+  final AuthService authentication = AuthService();
   @override
   void dispose() {
-    _passwordController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+
     super.dispose();
   }
 
-  void _onSignIn() async {
-    if (_formKey.currentState!.validate()) {
-      SharedPrefs.setsignIn();
-      
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Success()),
-        (route) => false,
+  void _onSignIp() {
+    if (_formKeysignin.currentState!.validate()) {
+      authentication.signIn(
+        context: context,
+        email: emailController.text,
+        password: passwordController.text,
       );
     }
   }
@@ -48,7 +54,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(backgroundColor: MainColors.mainWhite),
 
       body: Form(
-        key: _formKey,
+        key: _formKeysignin,
         child: SafeArea(
           child: SizedBox(
             width: double.infinity,
@@ -109,6 +115,7 @@ class _SignInState extends State<SignIn> {
                       isIcon: false,
                       iconss: null,
                       keyboared: TextInputType.emailAddress,
+                      controller: emailController,
                     ),
                   ),
                   SizedBox(height: 21),
@@ -127,12 +134,14 @@ class _SignInState extends State<SignIn> {
                     child: Maintextfield(
                       hint: 'Your password',
                       pic: Images.frame1,
+
                       obs: true,
                       validator: AppValidators.password,
                       svg: false,
                       iconss: null,
                       isIcon: false,
                       keyboared: TextInputType.text,
+                      controller: passwordController,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -154,7 +163,7 @@ class _SignInState extends State<SignIn> {
                     padding: const EdgeInsets.only(right: 24),
                     child: MainBtm(
                       txt: "Login",
-                      onPressed: _onSignIn,
+                      onPressed: _onSignIp,
                       radius: 48,
                       
                     ),

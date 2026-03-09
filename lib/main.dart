@@ -1,7 +1,8 @@
-import 'package:bazar/features/Ali/HomePage/home_page.dart';
+import 'package:bazar/features/Atef/Splach_screen.dart';
 import 'package:bazar/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(fontFamily: "OpenSans"),
       debugShowCheckedModeBanner: false,
 
-      home: Home_page(),
+      home: SplashScreen(),
     );
   }
 }

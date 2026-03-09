@@ -1,10 +1,13 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
+import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/utils/validator/validator.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
 import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:bazar/features/Atef/SignIn/widgets/MainTextField.dart';
-import 'package:bazar/features/Atef/Success/Success.dart';
+
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -15,20 +18,26 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignInState extends State<SignUp> {
-  final _formKey = GlobalKey<FormState>();
-  final _passwordController = TextEditingController();
+  final _formKeysignup = GlobalKey<FormState>();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final AuthService authentication = AuthService();
 
   @override
   void dispose() {
-    _passwordController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+
     super.dispose();
   }
 
   void _onSignUp() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Success()),
-        (route) => false,
+    if (_formKeysignup.currentState!.validate()) {
+      authentication.signUp(
+        context: context,
+        email: emailController.text,
+        password: passwordController.text,
       );
     }
   }
@@ -48,7 +57,7 @@ class _SignInState extends State<SignUp> {
       ),
 
       body: Form(
-        key: _formKey,
+        key: _formKeysignup,
         child: SafeArea(
           child: SizedBox(
             width: double.infinity,
@@ -104,11 +113,12 @@ class _SignInState extends State<SignUp> {
                       hint: 'Your Name',
                       pic: Images.frame1,
                       obs: false,
-                      validator: null,
                       svg: true,
                       isIcon: false,
                       iconss: null,
                       keyboared: TextInputType.text,
+                      controller: nameController,
+                      validator: AppValidators.name,
                     ),
                   ),
                   SizedBox(height: 16),
@@ -134,6 +144,7 @@ class _SignInState extends State<SignUp> {
                       isIcon: false,
                       iconss: null,
                       keyboared: TextInputType.emailAddress,
+                      controller: emailController,
                     ),
                   ),
                   SizedBox(height: 16),
@@ -158,6 +169,7 @@ class _SignInState extends State<SignUp> {
                       iconss: null,
                       isIcon: false,
                       keyboared: TextInputType.text,
+                      controller: passwordController,
                     ),
                   ),
                   const SizedBox(height: 16),
