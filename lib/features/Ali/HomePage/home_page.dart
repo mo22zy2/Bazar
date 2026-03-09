@@ -1,5 +1,4 @@
 import 'package:bazar/core/widgets/app_bar.dart';
-import 'package:bazar/core/widgets/bottom_nav_bar.dart';
 import 'package:bazar/features/Ali/HomePage/widget/Author/AuthorsSection.dart';
 import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/TopOfWeekItem.dart';
 import 'package:bazar/features/Ali/HomePage/widget/offer/featured_books_slider.dart';
@@ -29,7 +28,6 @@ class Home_page extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

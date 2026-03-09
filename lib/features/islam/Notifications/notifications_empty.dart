@@ -14,7 +14,14 @@ class NotificationsEmpty extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text("Notification"),
+        title: const Text(
+          "Notification",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Center(

@@ -5,6 +5,7 @@ void showTimeSheet(
   BuildContext context, {
   required List<String> dates,
   required List<String> times,
+  required void Function(String date, String time) onSelect,
 }) {
   showModalBottomSheet(
     context: context,
@@ -13,7 +14,11 @@ void showTimeSheet(
       borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
     ),
     builder: (context) {
-      return DeliveryTimeSheet(dates: dates, times: times);
+      return DeliveryTimeSheet(
+        dates: dates,
+        times: times,
+        onSelect: onSelect, // نمرر callback
+      );
     },
   );
 }

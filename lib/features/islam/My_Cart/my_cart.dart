@@ -1,3 +1,4 @@
+import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/features/islam/Notifications/notifications_empty.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +16,36 @@ class CartsPage extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationsEmpty(),
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.notifications_none_rounded,
+                  color: MainColors.mainBlack,
+                  size: 30,
                 ),
-              );
-            },
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NotificationsEmpty(),
+                    ),
+                  );
+                },
+              ),
+              Positioned(
+                top: 12,
+                right: 12,
+                child: CircleAvatar(
+                  radius: 6,
+                  backgroundColor: MainColors.mainWhite,
+                  child: CircleAvatar(
+                    radius: 4,
+                    backgroundColor: MainColors.mainRed,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
