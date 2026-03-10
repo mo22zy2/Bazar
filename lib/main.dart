@@ -1,4 +1,6 @@
 import 'package:bazar/features/Atef/Splach_screen.dart';
+import 'package:bazar/features/islam/Confirm_Order/Confirm_Order_visaAdded.dart';
+import 'package:bazar/features/islam/My_Cart/my_cart.dart';
 import 'package:bazar/firebase_options.dart';
 import 'package:flutter/material.dart';
 
