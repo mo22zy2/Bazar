@@ -1,6 +1,7 @@
 import 'package:bazar/core/models/book_model.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
+import 'package:bazar/features/islam/Confirm_Order/Confirm_Order_visaAdded.dart';
 import 'package:flutter/material.dart';
 
 class CustomDiscountCard extends StatelessWidget {
@@ -52,7 +53,13 @@ class CustomDiscountCard extends StatelessWidget {
                     height: 36,
                     child: MainBtm(
                       txt: "Order Now",
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ConfirmOrderVisaadded(),
+                          ),
+                        );
+                      },
                       radius: 10,
                       fontSize: 14,
                     ),
