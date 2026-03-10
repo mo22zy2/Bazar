@@ -19,6 +19,7 @@ class Home_page extends StatelessWidget {
                 iconDataLeft: Icons.search,
                 namePage: "Home",
                 iconDataRight: Icons.notifications_none,
+                isNotifications: true,
               ),
               SizedBox(height: 200, child: FeaturedBooksSlider()),
               TopOfWeekItem(),

@@ -1,6 +1,6 @@
 import 'package:bazar/core/api/author_service.dart';
 import 'package:bazar/core/models/author_model.dart';
-import 'package:bazar/features/Ali/HomePage/home_page.dart';
+import 'package:bazar/features/Ali/AuthorsPage/AuthorsPage.dart';
 import 'package:bazar/features/Ali/HomePage/widget/Author/AuthorItem.dart';
 import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/title_container.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _AuthorsSectionState extends State<AuthorsSection> {
 
     return Column(
       children: [
-        title_container(text: "Authors", destination: Home_page()),
+        title_container(text: "Authors", destination: AuthorsPage()),
 
         const SizedBox(height: 15),
         SizedBox(

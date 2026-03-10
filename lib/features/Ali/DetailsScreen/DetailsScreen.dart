@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatefulWidget {
   final String title;
-  final String price;
+  final int price;
   final String imageUrl;
 
   const DetailsScreen({
@@ -24,6 +24,14 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   bool initialFavorite = false;
+  late int currentTotalPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    currentTotalPrice = widget.price;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,7 +78,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   review_book(),
                   const SizedBox(height: 16),
 
-                  Number_book(widget: widget),
+                  Number_book(
+                    widget: widget,
+                    onPriceChanged: (newPrice) {
+                      setState(() {
+                        currentTotalPrice = newPrice;
+                      });
+                    },
+                  ),
                   const SizedBox(height: 20),
 
                   Row(
@@ -78,7 +93,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Expanded(
                         child: MainBtm(
                           txt: "Continue shopping",
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           radius: 48,
                         ),
                       ),
@@ -87,7 +104,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         child: MainBtm(
                           txt: "View cart",
                           onPressed: () {
-                            Navigator.pop(context);
                             Navigator.push(
                               context,
                               MaterialPageRoute(

@@ -9,14 +9,15 @@ class app_bar extends StatelessWidget {
     required this.iconDataRight,
     required this.namePage,
     required this.iconDataLeft,
+    this.isNotifications = false,
   });
   final IconData iconDataLeft;
   final String namePage;
   final IconData iconDataRight;
+  final bool? isNotifications;
 
   @override
   Widget build(BuildContext context) {
-    final bool isNotifications = true;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -36,7 +37,7 @@ class app_bar extends StatelessWidget {
               onPressed: () {},
               icon: Icon(iconDataRight, color: MainColors.mainBlack, size: 40),
             ),
-            if (isNotifications)
+            if (isNotifications ?? false)
               Positioned(
                 top: 14,
                 right: 16,

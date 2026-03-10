@@ -1,7 +1,6 @@
 import 'package:bazar/core/models/book_model.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
-import 'package:bazar/features/islam/Confirm_Order/Confirm_Order_visaAdded.dart';
 import 'package:flutter/material.dart';
 
 class CustomDiscountCard extends StatelessWidget {

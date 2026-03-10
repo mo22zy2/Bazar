@@ -1,10 +1,7 @@
 import 'package:bazar/features/Atef/Splach_screen.dart';
-import 'package:bazar/features/islam/set_location/widgets/address_controller.dart';
-
 import 'package:bazar/firebase_options.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,13 +16,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AddressController(),
-      child: MaterialApp(
-        theme: ThemeData(fontFamily: "OpenSans"),
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
-      ),
+    return MaterialApp(
+      theme: ThemeData(fontFamily: "OpenSans"),
+      debugShowCheckedModeBanner: false,
+
+      home: SplashScreen(),
     );
   }
 }

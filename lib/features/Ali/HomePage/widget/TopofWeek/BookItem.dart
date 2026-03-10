@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Bookitem extends StatelessWidget {
   final String title;
-  final String price;
+  final int price;
   final String imageUrl;
 
   const Bookitem({
@@ -17,19 +17,14 @@ class Bookitem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // هذا يجعل العنصر قابلاً للضغط
-      // داخل Bookitem.dart
       onTap: () {
         showModalBottomSheet(
           context: context,
-          isScrollControlled:
-              true, 
-          backgroundColor: Colors.transparent, 
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
           builder: (context) {
             return Container(
-              height:
-                  MediaQuery.of(context).size.height *
-                  0.95, 
+              height: MediaQuery.of(context).size.height * 0.95,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
@@ -69,7 +64,7 @@ class Bookitem extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
             Text(
-              price,
+              " $price  \$",
               style: const TextStyle(
                 color: Colors.indigo,
                 fontWeight: FontWeight.bold,
