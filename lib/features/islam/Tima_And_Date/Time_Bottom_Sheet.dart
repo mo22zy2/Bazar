@@ -17,7 +17,7 @@ void showTimeSheet(
       return DeliveryTimeSheet(
         dates: dates,
         times: times,
-        onSelect: onSelect, // نمرر callback
+        onSelect: onSelect, //  callback
       );
     },
   );
