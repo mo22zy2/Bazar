@@ -21,7 +21,9 @@ class app_bar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop(context);
+          },
           icon: Icon(iconDataLeft, color: MainColors.mainBlack, size: 40),
         ),
         Text(
