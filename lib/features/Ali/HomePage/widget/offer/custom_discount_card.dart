@@ -54,7 +54,14 @@ class CustomDiscountCard extends StatelessWidget {
                     height: 36,
                     child: MainBtm(
                       txt: "Order Now",
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ConfirmOrderVisaadded(),
+                          ),
+                        );
+                      },
                       radius: 10,
                       fontSize: 14,
                     ),

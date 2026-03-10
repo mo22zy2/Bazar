@@ -1,5 +1,5 @@
 import 'package:bazar/core/widgets/MainBtn.dart';
-import 'package:bazar/core/widgets/app_bar.dart';
+
 import 'package:bazar/features/islam/Confirm_Order/widgets/Details_Card.dart';
 import 'package:bazar/features/islam/Notifications/notifications_empty.dart';
 import 'package:bazar/features/islam/Payment_Detils/Summary_Bottom_Sheets.dart';
@@ -113,12 +113,6 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
           child: Column(
             children: [
               const SizedBox(height: 10),
-
-              app_bar(
-                iconDataLeft: Icons.arrow_back_rounded,
-                namePage: "Confirm Order",
-                iconDataRight: Icons.notifications_none_rounded,
-              ),
 
               const SizedBox(height: 20),
 
