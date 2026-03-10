@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:bazar/core/utils/colors/maincolors.dart';
+import 'package:bazar/features/Ahmed/NotificationScreen.dart';
 import 'package:flutter/material.dart';
 
 class app_bar extends StatelessWidget {
@@ -34,7 +35,11 @@ class app_bar extends StatelessWidget {
         Stack(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => NotificationScreen()),
+                );
+              },
               icon: Icon(iconDataRight, color: MainColors.mainBlack, size: 40),
             ),
             if (isNotifications ?? false)

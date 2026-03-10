@@ -1,5 +1,7 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:bazar/core/widgets/MainBtn.dart';
-import 'package:bazar/core/widgets/app_bar.dart';
+import 'package:bazar/features/Ahmed/OrderSuccessScreen.dart';
 import 'package:bazar/features/islam/Confirm_Order/widgets/Details_Card.dart';
 import 'package:bazar/features/islam/Notifications/notifications_empty.dart';
 import 'package:bazar/features/islam/Payment_Detils/Summary_Bottom_Sheets.dart';
@@ -114,12 +116,6 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
             children: [
               const SizedBox(height: 10),
 
-              app_bar(
-                iconDataLeft: Icons.arrow_back_rounded,
-                namePage: "Confirm Order",
-                iconDataRight: Icons.notifications_none_rounded,
-              ),
-
               const SizedBox(height: 20),
 
               Expanded(
@@ -135,8 +131,7 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
                           ? "Choose your address"
                           : "Bld ${addressController.address!.building}, Floor ${addressController.address!.floor}, Flat ${addressController.address!.flat} • ${addressController.address!.city}, ${addressController.address!.governorate}",
                       trailingIcon: Icons.arrow_forward_ios,
-                      showChange: true,
-                      onChange: () => Navigator.push(
+                      onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => SetLocation()),
                       ),
@@ -185,14 +180,28 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
                       mainText: "Payment",
                       subText: "Choose your payment",
                       trailingIcon: Icons.arrow_forward_ios,
-                      onTap: () {},
+                      onTap: () => showSummarySheet(
+                        context,
+                        orderItems,
+                        shipping: shipping,
+                      ),
                     ),
                   ],
                 ),
               ),
 
               // Order Button
-              MainBtm(txt: "Order", radius: 30, onPressed: () {}),
+              MainBtm(
+                txt: "Order",
+                radius: 30,
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => OrderSuccessScreen(),
+                    ),
+                  );
+                },
+              ),
               const SizedBox(height: 20),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
@@ -48,7 +49,9 @@ class Success extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               child: MainBtm(
                 txt: "Get Started",
-                onPressed: () {
+                onPressed: () async {
+                  await SharedPrefs.setsignIn();
+
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => MainLayout()),

@@ -16,15 +16,10 @@ class OrderSuccessScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // هنا بنستخدم الـ Image اللي زمايلك عرفوها
-              // Image.asset(Images.groupps),
-              Icon(
-                Icons.check_box_outline_blank,
-                size: 100,
-                color: Colors.purple,
-              ),
+              Image.asset("assets/images/yourecived.png"),
               const SizedBox(height: 24),
               const Text(
-                "You Received The Order!",
+                "The Order Confirmed!!",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               const Text(
@@ -33,7 +28,7 @@ class OrderSuccessScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               // استخدام الـ MainBtm بتاع زمايلك بالظبط
-              MainBtm(txt: "Done", onPressed: () {}, radius: 12),
+              MainBtm(txt: "Done", onPressed: () {}, radius: 48),
             ],
           ),
         ),
