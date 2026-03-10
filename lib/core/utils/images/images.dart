@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class Images {
   static String frame1 = "assets/images/Frame.png";
   static String frame2 = "assets/images/Frame(1).png";

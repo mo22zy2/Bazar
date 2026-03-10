@@ -2,6 +2,7 @@
 
 import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
+import 'package:bazar/core/widgets/mainlayout.dart';
 import 'package:bazar/features/Atef/Success/Success.dart';
 import 'package:bazar/features/Atef/onBoarding/onBoarding.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
       bool islogged = await SharedPrefs.getSignedin();
       if (islogged) {
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Success()),
+          MaterialPageRoute(builder: (context) => MainLayout()),
           (route) => false,
         );
       } else {

@@ -72,7 +72,7 @@ class _OnboardingState extends State<onBoarding> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsGeometry.only(top: 16, right: 291),
+              padding: EdgeInsets.only(top: 16, right: 291),
               child: GestureDetector(
                 onTap: _finishOnboarding,
                 child: Text(
@@ -85,12 +85,13 @@ class _OnboardingState extends State<onBoarding> {
                 ),
               ),
             ),
+
             Expanded(
               child: PageView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 controller: _controller,
                 itemCount: _pages.length,
-                onPageChanged: (int index) {
+                onPageChanged: (index) {
                   setState(() {
                     current = index;
                   });
@@ -103,43 +104,36 @@ class _OnboardingState extends State<onBoarding> {
                         height: 322,
                         width: 320,
                         child: Image.asset(
-                          _pages[index]['image']!,
+                          _pages[index]['image'],
                           fit: BoxFit.fitWidth,
-                          width: double.infinity,
                         ),
                       ),
                       SizedBox(height: 14),
-                      Container(
-                        width: double.infinity,
-
+                      Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 66),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              _pages[index]["title"]!,
+                              _pages[index]["title"],
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.black,
+                              style: TextStyle(
                                 fontSize: 26,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
                             SizedBox(height: 14),
-
                             Text(
-                              _pages[index]["description"]!,
+                              _pages[index]["description"],
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black.withAlpha(80),
-                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 68),
+                      SizedBox(height: 68),
                       MainBtm(
                         txt: current < _pages.length - 2
                             ? "Continue"
@@ -150,17 +144,6 @@ class _OnboardingState extends State<onBoarding> {
                         radius: 12,
                       ),
                       SizedBox(height: 24),
-                      GestureDetector(
-                        onTap: _finishOnboarding,
-                        child: Text(
-                          "Sign in",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: MainColors.mainPurple,
-                          ),
-                        ),
-                      ),
                     ],
                   );
                 },
