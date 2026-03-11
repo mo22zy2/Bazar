@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_string_interpolations
 
+import 'package:bazar/core/models/book_model.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
 import 'package:bazar/features/Ahmed/OrderSuccessScreen.dart';
 import 'package:bazar/features/islam/Confirm_Order/widgets/Details_Card.dart';
@@ -9,12 +10,15 @@ import 'package:bazar/features/islam/Payment_Detils/Summary_Card.dart';
 import 'package:bazar/features/islam/Tima_And_Date/Time_Bottom_Sheet.dart';
 import 'package:bazar/features/islam/set_location/set_Location.dart';
 import 'package:bazar/features/islam/set_location/widgets/address_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:provider/provider.dart';
 
 class ConfirmOrderVisaadded extends StatefulWidget {
-  const ConfirmOrderVisaadded({super.key});
+  const ConfirmOrderVisaadded({super.key, required this.book});
+  final Book book;
 
   @override
   State<ConfirmOrderVisaadded> createState() => _ConfirmOrderVisaaddedState();
@@ -37,12 +41,15 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
     "Between\n11PM : 12PM",
   ];
 
-  final List<Map<String, String>> orderItems = [
-    {"name": "Squid Sweet and Sour Salad", "price": "\$19.99"},
-    {"name": "Japan Hainanese Sashimi", "price": "\$39.99"},
-    {"name": "Black Pepper Beef Lumpia", "price": "\$27.12"},
-  ];
+  // final List<Map<String, String>> orderItems = [
+  //   {"name": "Squid Sweet and Sour Salad", "price": "\$19.99"},
+  //   {"name": "Japan Hainanese Sashimi", "price": "\$39.99"},
+  //   {"name": "Black Pepper Beef Lumpia", "price": "\$27.12"},
+  // ];
 
+  List<Map<String, String>> get orderItems => [
+    {"name": widget.book.title, "price": widget.book.price},
+  ];
   double get price {
     double total = 0;
     for (var item in orderItems) {
@@ -194,7 +201,15 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
               MainBtm(
                 txt: "Order",
                 radius: 30,
-                onPressed: () {
+                onPressed: () async {
+                  await FirebaseFirestore.instance.collection("orders").add({
+                    "userId": FirebaseAuth.instance.currentUser!.uid,
+                    "title": widget.book.title,
+                    "price": widget.book.price,
+                    "image": widget.book.imageUrl,
+                    "date": DateTime.now(),
+                  });
+
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => OrderSuccessScreen(),
@@ -209,4 +224,16 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
       ),
     );
   }
+}
+
+Future<void> saveOrder(dynamic widget) async {
+  final user = FirebaseAuth.instance.currentUser;
+
+  await FirebaseFirestore.instance.collection("orders").add({
+    "userId": user!.uid,
+    "title": widget.book.title,
+    "price": widget.book.price,
+    "image": widget.book.imageUrl,
+    "date": DateTime.now(),
+  });
 }

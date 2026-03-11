@@ -1,5 +1,5 @@
-import 'package:bazar/features/Ahmed/CategoryPage.dart';
 import 'package:bazar/features/Ali/HomePage/home_page.dart';
+import 'package:bazar/features/Atef/profile/profile.dart';
 import 'package:bazar/features/islam/My_Cart/my_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:bazar/core/widgets/bottom_nav_bar.dart';
@@ -18,7 +18,7 @@ class _MainLayoutState extends State<MainLayout> {
     Home_page(),
     // CategoryPage(),
     CartsPage(),
-    // ProfilePage(),
+    ProfilePage(),
   ];
 
   void changePage(int index) {

@@ -1,4 +1,6 @@
+import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:bazar/features/Atef/Splach_screen.dart';
+
 import 'package:bazar/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "OpenSans"),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SignIn(),
     );
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, use_build_context_synchronously
+// ignore_for_file: avoid_print, use_build_context_synchronously, non_constant_identifier_names
 
 import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
@@ -7,6 +7,7 @@ import 'package:bazar/core/utils/validator/validator.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
 import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:bazar/features/Atef/SignIn/widgets/MainTextField.dart';
+import 'package:bazar/features/Atef/Success/Success.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class _SignInState extends State<SignUp> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final AuthService authentication = AuthService();
+  String? errorMessage;
 
   @override
   void dispose() {
@@ -32,13 +34,25 @@ class _SignInState extends State<SignUp> {
     super.dispose();
   }
 
-  void _onSignUp() {
+  void _SignUp() async {
     if (_formKeysignup.currentState!.validate()) {
-      authentication.signUp(
-        context: context,
+      final error = await AuthService().signUp(
         email: emailController.text,
         password: passwordController.text,
+        context: context,
+        name: nameController.text,
       );
+
+      if (error != null) {
+        setState(() {
+          errorMessage = error;
+        });
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => Success()),
+        );
+      }
     }
   }
 
@@ -119,6 +133,7 @@ class _SignInState extends State<SignUp> {
                       keyboared: TextInputType.text,
                       controller: nameController,
                       validator: AppValidators.name,
+                      errorText: errorMessage,
                     ),
                   ),
                   SizedBox(height: 16),
@@ -136,6 +151,8 @@ class _SignInState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.only(right: 24),
                     child: Maintextfield(
+                      errorText: errorMessage,
+
                       hint: 'Your email',
                       pic: Images.frame1,
                       obs: false,
@@ -161,6 +178,8 @@ class _SignInState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.only(right: 24),
                     child: Maintextfield(
+                      errorText: errorMessage,
+
                       hint: 'Your password',
                       pic: Images.frame1,
                       obs: true,
@@ -191,7 +210,7 @@ class _SignInState extends State<SignUp> {
                     padding: const EdgeInsets.only(right: 24),
                     child: MainBtm(
                       txt: "Register",
-                      onPressed: _onSignUp,
+                      onPressed: _SignUp,
                       radius: 48,
                     ),
                   ),

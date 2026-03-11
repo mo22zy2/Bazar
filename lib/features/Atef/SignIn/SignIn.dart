@@ -1,12 +1,15 @@
-// ignore_for_file: avoid_print, use_build_context_synchronously
+// ignore_for_file: avoid_print, use_build_context_synchronously, non_constant_identifier_names
 
+import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/services/firebase/firebase.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/utils/validator/validator.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
+import 'package:bazar/core/widgets/mainlayout.dart';
 import 'package:bazar/features/Atef/SignIn/widgets/MainTextField.dart';
 import 'package:bazar/features/Atef/SignUp/SignUp.dart';
+import 'package:bazar/features/Atef/forget%20password/forgetpasword.dart';
 
 import 'package:flutter/material.dart';
 
@@ -22,6 +25,7 @@ class _SignInState extends State<SignIn> {
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  String? errorMessage;
 
   final AuthService authentication = AuthService();
   @override
@@ -32,13 +36,23 @@ class _SignInState extends State<SignIn> {
     super.dispose();
   }
 
-  void _onSignIp() {
+  void _SignIn() async {
     if (_formKeysignin.currentState!.validate()) {
-      authentication.signIn(
-        context: context,
+      final error = await AuthService().signIn(
         email: emailController.text,
         password: passwordController.text,
       );
+
+      if (error != null) {
+        setState(() {
+          errorMessage = error;
+        });
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => MainLayout()),
+        );
+      }
     }
   }
 
@@ -116,6 +130,7 @@ class _SignInState extends State<SignIn> {
                       iconss: null,
                       keyboared: TextInputType.emailAddress,
                       controller: emailController,
+                      errorText: errorMessage,
                     ),
                   ),
                   SizedBox(height: 21),
@@ -147,7 +162,14 @@ class _SignInState extends State<SignIn> {
                   const SizedBox(height: 16),
 
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Forgetpasword(),
+                        ),
+                      );
+                    },
                     child: Text(
                       "Forgot Password?",
                       style: TextStyle(
@@ -163,9 +185,8 @@ class _SignInState extends State<SignIn> {
                     padding: const EdgeInsets.only(right: 24),
                     child: MainBtm(
                       txt: "Login",
-                      onPressed: _onSignIp,
+                      onPressed: _SignIn,
                       radius: 48,
-                      
                     ),
                   ),
 
@@ -230,16 +251,23 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                   SizedBox(height: 24),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 24),
-                    child: GestureDetector(
-                      child: Image.asset(Images.pic1, fit: BoxFit.cover),
-                    ),
-                  ),
+
                   SizedBox(height: 9),
                   Padding(
                     padding: const EdgeInsets.only(right: 24),
                     child: GestureDetector(
+                      onTap: () async {
+                        final user = await AuthService().signInWithGoogle();
+
+                        if (user != null) {
+                          await SharedPrefs.setsignIn();
+
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (_) => MainLayout()),
+                          );
+                        }
+                      },
                       child: Image.asset(Images.pic2, fit: BoxFit.cover),
                     ),
                   ),

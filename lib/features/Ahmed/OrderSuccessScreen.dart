@@ -1,3 +1,4 @@
+import 'package:bazar/core/widgets/mainlayout.dart';
 import 'package:flutter/material.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart'; //
 import 'package:bazar/core/widgets/MainBtn.dart'; //
@@ -28,7 +29,15 @@ class OrderSuccessScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               // استخدام الـ MainBtm بتاع زمايلك بالظبط
-              MainBtm(txt: "Done", onPressed: () {}, radius: 48),
+              MainBtm(
+                txt: "Continue Shopping",
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => MainLayout()),
+                  );
+                },
+                radius: 48,
+              ),
             ],
           ),
         ),
