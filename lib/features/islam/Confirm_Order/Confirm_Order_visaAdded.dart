@@ -51,7 +51,11 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
     {"name": widget.book.title, "price": widget.book.price},
   ];
   double get price {
-    return widget.book.price.toDouble();
+    double total = 0;
+    for (var item in orderItems) {
+      total += double.parse(item["price"]!.replaceAll("\$", ""));
+    }
+    return total;
   }
 
   double get total => price + shipping;
