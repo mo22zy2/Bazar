@@ -26,14 +26,11 @@ class AuthorService {
               !author.imageUrl.contains("static/images/missing");
         }).toList();
 
-        debugPrint(
-          "عدد المؤلفين بعد الفلترة المبدئية: ${filteredAuthors.length}",
-        );
         return filteredAuthors;
       }
       return [];
     } catch (e) {
-      debugPrint("خطأ: $e");
+      debugPrint("error: $e");
       return [];
     }
   }

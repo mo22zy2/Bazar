@@ -1,8 +1,9 @@
+import 'package:bazar/core/widgets/bottom_nav_bar.dart';
+import 'package:bazar/features/Ali/CategoryPage/category_screen.dart'; // تأكد من المسار ده صح
 import 'package:bazar/features/Ali/HomePage/home_page.dart';
 import 'package:bazar/features/Atef/profile/profile.dart';
 import 'package:bazar/features/islam/My_Cart/my_cart.dart';
 import 'package:flutter/material.dart';
-import 'package:bazar/core/widgets/bottom_nav_bar.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -16,9 +17,9 @@ class _MainLayoutState extends State<MainLayout> {
 
   final List<Widget> pages = [
     Home_page(),
-    // CategoryPage(),
-    CartsPage(),
-    ProfilePage(),
+    category_Screen(), 
+    CartsPage(), 
+    ProfilePage(), 
   ];
 
   void changePage(int index) {
@@ -30,7 +31,7 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
+      body: pages[currentIndex], 
 
       bottomNavigationBar: BottomNavBar(
         initialIndex: currentIndex,

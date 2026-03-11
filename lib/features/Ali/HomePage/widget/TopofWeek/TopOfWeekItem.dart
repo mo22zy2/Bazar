@@ -1,6 +1,6 @@
 import 'package:bazar/core/api/book_service.dart';
 import 'package:bazar/core/models/book_model.dart' hide BookService;
-import 'package:bazar/features/Ali/HomePage/home_page.dart';
+import 'package:bazar/features/Ali/CategoryPage/Category_screen.dart';
 import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/BookItem.dart';
 import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/title_container.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class _TopOfWeekItemState extends State<TopOfWeekItem> {
 
     return Column(
       children: [
-        title_container(text: "Top of Week", destination: Home_page()),
+        title_container(text: "Top of Week", destination: category_Screen()),
         const SizedBox(height: 10),
         SizedBox(
           height: 220,

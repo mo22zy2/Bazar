@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void showSummarySheet(
   BuildContext context,
-  List<Map<String, String>> items, {
+  List<Map<String, dynamic>> items, {
   required double shipping,
 }) {
   double price = 0;
