@@ -60,9 +60,14 @@ class _TopOfWeekItemState extends State<TopOfWeekItem> {
             itemCount: _books.take(10).length,
             itemBuilder: (context, index) {
               final book = _books[index];
+              print("DEBUG: Book '${book.title}' has price: '${book.price}'");
+              String priceString = book.price.toString().replaceAll(
+                RegExp(r'[^\d.]'),
+                '',
+              );
               return Bookitem(
                 title: book.title,
-                price: book.price,
+                price: (double.tryParse(priceString)?.toInt()) ?? 0,
                 imageUrl: book.imageUrl,
               );
             },

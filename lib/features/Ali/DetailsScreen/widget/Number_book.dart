@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
 class Number_book extends StatefulWidget {
-  const Number_book({super.key, required this.widget});
+  const Number_book({
+    super.key,
+    required this.widget,
+    required this.onPriceChanged,
+  });
 
   final DetailsScreen widget;
+  final Function(int) onPriceChanged; 
 
   @override
   State<Number_book> createState() => _Number_bookState();
@@ -25,7 +30,6 @@ class _Number_bookState extends State<Number_book> {
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Row(
             children: [
-              // زر -
               CircleAvatar(
                 radius: 12,
                 child: InkWell(
@@ -34,6 +38,7 @@ class _Number_bookState extends State<Number_book> {
                     setState(() {
                       if (numBook > 1) {
                         numBook--;
+                        widget.onPriceChanged(widget.widget.price * numBook);
                       }
                     });
                   },
@@ -60,6 +65,7 @@ class _Number_bookState extends State<Number_book> {
                   onTap: () {
                     setState(() {
                       numBook++;
+                      widget.onPriceChanged(widget.widget.price * numBook);
                     });
                   },
                   child: Center(
@@ -77,7 +83,7 @@ class _Number_bookState extends State<Number_book> {
 
         SizedBox(width: 20),
         Text(
-          widget.widget.price,
+          " ${widget.widget.price * numBook} \$",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,

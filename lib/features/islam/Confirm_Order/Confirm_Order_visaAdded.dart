@@ -138,8 +138,7 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
                           ? "Choose your address"
                           : "Bld ${addressController.address!.building}, Floor ${addressController.address!.floor}, Flat ${addressController.address!.flat} • ${addressController.address!.city}, ${addressController.address!.governorate}",
                       trailingIcon: Icons.arrow_forward_ios,
-                      showChange: true,
-                      onChange: () => Navigator.push(
+                      onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => SetLocation()),
                       ),
@@ -188,7 +187,11 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
                       mainText: "Payment",
                       subText: "Choose your payment",
                       trailingIcon: Icons.arrow_forward_ios,
-                      onTap: () {},
+                      onTap: () => showSummarySheet(
+                        context,
+                        orderItems,
+                        shipping: shipping,
+                      ),
                     ),
                   ],
                 ),
