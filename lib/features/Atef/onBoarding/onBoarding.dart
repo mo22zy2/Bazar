@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/utils/images/images.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
@@ -58,7 +59,8 @@ class _OnboardingState extends State<onBoarding> {
     super.dispose();
   }
 
-  void _finishOnboarding() {
+  void _finishOnboarding() async {
+    await SharedPrefs.setOnBoarding();
     Navigator.of(
       context,
     ).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));

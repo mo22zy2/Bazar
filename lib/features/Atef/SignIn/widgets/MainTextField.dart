@@ -10,7 +10,9 @@ class Maintextfield extends StatefulWidget {
     required this.svg,
     required this.iconss,
     required this.isIcon,
-    required this.keyboared, required this.controller,
+    required this.keyboared,
+    required this.controller,
+    this.errorText,
   });
 
   final String hint;
@@ -22,6 +24,7 @@ class Maintextfield extends StatefulWidget {
   final IconData? iconss;
   final TextInputType keyboared;
   final TextEditingController controller;
+  final String? errorText;
 
   @override
   State<Maintextfield> createState() => _MaintextfieldState();
@@ -62,6 +65,7 @@ class _MaintextfieldState extends State<Maintextfield> {
 
       validator: widget.validator,
       decoration: InputDecoration(
+        errorText: widget.errorText,
         filled: true,
         fillColor: Color(0xFFEDEDED),
         hintText: widget.hint,
