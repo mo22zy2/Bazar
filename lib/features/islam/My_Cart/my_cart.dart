@@ -92,7 +92,7 @@ class CartsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
                 ),
                 subtitle: Text(
-                  order["price"],
+                  order["price"].toString(),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
               );

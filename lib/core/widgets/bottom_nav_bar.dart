@@ -45,10 +45,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.article_rounded),
-        //   label: 'Category',
-        // ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.article_rounded),
+          label: 'Category',
+        ),
         BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],

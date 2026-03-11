@@ -4,6 +4,8 @@ import 'package:bazar/features/Ali/DetailsScreen/widget/Number_book.dart';
 import 'package:bazar/features/Ali/DetailsScreen/widget/review_book.dart';
 import 'package:bazar/features/Ali/DetailsScreen/widget/title_book.dart';
 import 'package:bazar/features/islam/My_Cart/my_cart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -100,10 +102,27 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                       const SizedBox(width: 10),
+                      // عدل زر View cart ليقوم بعملية الإضافة لـ Firestore
                       Expanded(
                         child: MainBtm(
                           txt: "View cart",
-                          onPressed: () {
+                          radius: 48,
+                          bgColor: MainColors.mainGrey,
+                          txtColor: MainColors.mainPurple,
+                          onPressed: () async {
+                            await FirebaseFirestore.instance
+                                .collection("orders")
+                                .add({
+                                  "userId":
+                                      FirebaseAuth.instance.currentUser!.uid,
+                                  "title": widget.title,
+                                  "price":
+                                      currentTotalPrice, 
+                                  "image": widget.imageUrl,
+                                  "date": DateTime.now(),
+                                });
+
+                            if (!mounted) return;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -111,9 +130,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ),
                             );
                           },
-                          radius: 48,
-                          bgColor: MainColors.mainGrey,
-                          txtColor: MainColors.mainPurple,
                         ),
                       ),
                     ],
