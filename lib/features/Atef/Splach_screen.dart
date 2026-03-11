@@ -1,12 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+
 import 'package:bazar/core/services/Sharedprefs/sharedprefs.dart';
 import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/widgets/mainlayout.dart';
 import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:bazar/features/Atef/onBoarding/onBoarding.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

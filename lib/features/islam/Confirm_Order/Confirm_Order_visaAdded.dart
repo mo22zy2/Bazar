@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_string_interpolations
 
 import 'package:bazar/core/models/book_model.dart';
+import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:bazar/core/widgets/MainBtn.dart';
 import 'package:bazar/features/Ahmed/OrderSuccessScreen.dart';
 import 'package:bazar/features/islam/Confirm_Order/widgets/Details_Card.dart';
@@ -13,7 +14,6 @@ import 'package:bazar/features/islam/set_location/widgets/address_controller.dar
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bazar/core/utils/colors/maincolors.dart';
 import 'package:provider/provider.dart';
 
 class ConfirmOrderVisaadded extends StatefulWidget {
@@ -47,15 +47,11 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
   //   {"name": "Black Pepper Beef Lumpia", "price": "\$27.12"},
   // ];
 
-  List<Map<String, String>> get orderItems => [
+  List<Map<String, dynamic>> get orderItems => [
     {"name": widget.book.title, "price": widget.book.price},
   ];
   double get price {
-    double total = 0;
-    for (var item in orderItems) {
-      total += double.parse(item["price"]!.replaceAll("\$", ""));
-    }
-    return total;
+    return widget.book.price.toDouble();
   }
 
   double get total => price + shipping;

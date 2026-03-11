@@ -1,17 +1,12 @@
 // ignore_for_file: unused_local_variable
 
-import 'dart:convert';
-
-// ignore: depend_on_referenced_packages
-import 'package:http/http.dart' as http;
-
 class Book {
   final String title;
   final String imageUrl;
   final String author;
   final String authorImage;
   final String isbn;
-  final String price;
+  final int price;
 
   Book({
     required this.title,
@@ -49,38 +44,7 @@ class Book {
       isbn: (json['isbn'] != null && (json['isbn'] as List).isNotEmpty)
           ? json['isbn'][0].toString()
           : '',
-      price: "\$${(10 + (json['title']?.length ?? 0) % 20).toStringAsFixed(2)}",
+      price: (10 + (json['title']?.length ?? 0) % 20).toInt(),
     );
-  }
-}
-
-class BookService {
-  Future<List<Book>> fetchFictionBooks() async {
-    final url = Uri.parse(
-      'https://openlibrary.org/search.json?q=fiction&limit=10',
-    );
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body)['docs'];
-      return data.map((json) => Book.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load books');
-    }
-  }
-
-  Future<List<Book>> fetchRecentBooks() async {
-    final url = Uri.parse(
-      'https://openlibrary.org/search.json?q=subject:fiction&sort=new&limit=10',
-    );
-
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body)['docs'];
-      return data.map((json) => Book.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load recent books');
-    }
   }
 }

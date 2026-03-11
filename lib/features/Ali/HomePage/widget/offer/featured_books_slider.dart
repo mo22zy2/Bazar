@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bazar/core/api/book_service.dart';
 import 'package:bazar/core/models/book_model.dart';
 import 'package:flutter/material.dart';
 
