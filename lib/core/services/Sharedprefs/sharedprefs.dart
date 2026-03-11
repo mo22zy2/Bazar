@@ -1,23 +1,34 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {
+  static const String key = "isSignin";
+
   static Future<bool> getSignedin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool("isSignin") ?? false;
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(key) ?? false;
   }
 
   static Future<void> setsignIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool("isSignin", true);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(key, true);
   }
 
-  // Future<bool> isFirstTime() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   return prefs.getBool("firstTime") ?? true;
-  // }
+  static Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(key, false);
+  }
 
-  // Future<void> setFirstTimeFalse() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   await prefs.setBool("firstTime", false);
-  // }
+  static Future<void> clear() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+  static Future<bool> getOnBoarding() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getBool("seenOnboarding") ?? false;
+}
+
+static Future<void> setOnBoarding() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool("seenOnboarding", true);
+}
 }

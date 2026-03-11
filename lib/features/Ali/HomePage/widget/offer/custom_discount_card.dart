@@ -55,9 +55,11 @@ class CustomDiscountCard extends StatelessWidget {
                     child: MainBtm(
                       txt: "Order Now",
                       onPressed: () {
-                        Navigator.of(context).push(
+
+                        Navigator.push(
+                          context,
                           MaterialPageRoute(
-                            builder: (context) => ConfirmOrderVisaadded(),
+                            builder: (_) => ConfirmOrderVisaadded(book: book),
                           ),
                         );
                       },
@@ -90,3 +92,5 @@ class CustomDiscountCard extends StatelessWidget {
     );
   }
 }
+
+
