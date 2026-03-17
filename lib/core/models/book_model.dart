@@ -6,7 +6,7 @@ class Book {
   final String author;
   final String authorImage;
   final String isbn;
-  final int price;
+  final double price;
 
   Book({
     required this.title,
@@ -44,7 +44,7 @@ class Book {
       isbn: (json['isbn'] != null && (json['isbn'] as List).isNotEmpty)
           ? json['isbn'][0].toString()
           : '',
-      price: (10 + (json['title']?.length ?? 0) % 20).toInt(),
+      price: (10 + (json['title']?.length ?? 0) % 20).toDouble(),
     );
   }
 }

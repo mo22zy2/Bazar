@@ -1,5 +1,5 @@
 import 'package:bazar/core/widgets/bottom_nav_bar.dart';
-import 'package:bazar/features/Ali/CategoryPage/category_screen.dart'; // تأكد من المسار ده صح
+import 'package:bazar/features/Ali/CategoryPage/Category_screen.dart'; // تأكد من المسار ده صح
 import 'package:bazar/features/Ali/HomePage/home_page.dart';
 import 'package:bazar/features/Atef/profile/profile.dart';
 import 'package:bazar/features/islam/My_Cart/my_cart.dart';
@@ -17,7 +17,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   final List<Widget> pages = [
     Home_page(),
-    category_Screen(), 
+    CategoryScreen(), 
     CartsPage(), 
     ProfilePage(), 
   ];

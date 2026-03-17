@@ -1,9 +1,10 @@
-import 'package:bazar/features/Atef/SignIn/SignIn.dart';
 import 'package:bazar/features/Atef/Splach_screen.dart';
 
 import 'package:bazar/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:bazar/features/islam/set_location/widgets/address_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +17,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: "OpenSans"),
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AddressController()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(fontFamily: "OpenSans"),
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }

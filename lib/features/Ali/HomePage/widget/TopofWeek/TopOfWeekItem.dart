@@ -1,5 +1,5 @@
 import 'package:bazar/core/api/book_service.dart';
-import 'package:bazar/core/models/book_model.dart' hide BookService;
+import 'package:bazar/core/models/book_model.dart';
 import 'package:bazar/features/Ali/CategoryPage/Category_screen.dart';
 import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/BookItem.dart';
 import 'package:bazar/features/Ali/HomePage/widget/TopofWeek/title_container.dart';
@@ -50,7 +50,7 @@ class _TopOfWeekItemState extends State<TopOfWeekItem> {
 
     return Column(
       children: [
-        title_container(text: "Top of Week", destination: category_Screen()),
+        title_container(text: "Top of Week", destination: CategoryScreen()),
         const SizedBox(height: 10),
         SizedBox(
           height: 220,
@@ -60,7 +60,6 @@ class _TopOfWeekItemState extends State<TopOfWeekItem> {
             itemCount: _books.take(10).length,
             itemBuilder: (context, index) {
               final book = _books[index];
-              print("DEBUG: Book '${book.title}' has price: '${book.price}'");
               String priceString = book.price.toString().replaceAll(
                 RegExp(r'[^\d.]'),
                 '',

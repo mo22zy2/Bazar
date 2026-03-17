@@ -24,7 +24,7 @@ class BookItemCategory extends StatelessWidget {
               ),
               child: DetailsScreen(
                 title: book.title,
-                price: book.price,
+                price: book.price.toInt(),
                 imageUrl: book.imageUrl,
               ),
             );

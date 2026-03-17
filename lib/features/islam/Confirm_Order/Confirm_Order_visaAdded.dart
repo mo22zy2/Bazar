@@ -53,7 +53,12 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
   double get price {
     double total = 0;
     for (var item in orderItems) {
-      total += double.parse(item["price"]!.replaceAll("\$", ""));
+      final priceVal = item["price"];
+      if (priceVal is num) {
+        total += priceVal.toDouble();
+      } else if (priceVal is String) {
+        total += double.tryParse(priceVal.replaceAll(RegExp(r'[^\d.]'), '')) ?? 0.0;
+      }
     }
     return total;
   }
@@ -187,11 +192,12 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
                       mainText: "Payment",
                       subText: "Choose your payment",
                       trailingIcon: Icons.arrow_forward_ios,
-                      onTap: () => showSummarySheet(
-                        context,
-                        orderItems,
-                        shipping: shipping,
-                      ),
+                      onTap: (){}
+                      // => showSummarySheet(
+                      //   context,
+                      //   orderItems,
+                      //   shipping: shipping,
+                      // ),
                     ),
                   ],
                 ),
@@ -202,8 +208,16 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
                 txt: "Order",
                 radius: 30,
                 onPressed: () async {
+                  final user = FirebaseAuth.instance.currentUser;
+                  if (user == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Please sign in to place an order")),
+                    );
+                    return;
+                  }
+
                   await FirebaseFirestore.instance.collection("orders").add({
-                    "userId": FirebaseAuth.instance.currentUser!.uid,
+                    "userId": user.uid,
                     "title": widget.book.title,
                     "price": widget.book.price,
                     "image": widget.book.imageUrl,
@@ -228,9 +242,10 @@ class _ConfirmOrderVisaaddedState extends State<ConfirmOrderVisaadded> {
 
 Future<void> saveOrder(dynamic widget) async {
   final user = FirebaseAuth.instance.currentUser;
+  if (user == null) return;
 
   await FirebaseFirestore.instance.collection("orders").add({
-    "userId": user!.uid,
+    "userId": user.uid,
     "title": widget.book.title,
     "price": widget.book.price,
     "image": widget.book.imageUrl,

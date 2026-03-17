@@ -5,15 +5,14 @@ import 'package:bazar/features/Ali/CategoryPage/widget/book_grid_view.dart';
 import 'package:bazar/features/Ali/CategoryPage/widget/bool_tap_list_view.dart';
 import 'package:flutter/material.dart';
 
-class category_Screen extends StatefulWidget {
-  const category_Screen({super.key});
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({super.key});
 
   @override
-  State<category_Screen> createState() => _category_ScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-// ignore: camel_case_types
-class _category_ScreenState extends State<category_Screen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   List<Book> _books = [];
   bool _isLoading = true;
   String _activeCategory = "All";

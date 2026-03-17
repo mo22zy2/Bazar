@@ -13,7 +13,7 @@ class CartsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "my Cart",
+          "My Cart",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -51,16 +51,17 @@ class CartsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection("orders")
-            .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-            .snapshots(),
-
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: FirebaseAuth.instance.currentUser == null
+          ? const Center(child: Text("Please sign in to view your cart"))
+          : StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("orders")
+                  .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
           final orders = snapshot.data!.docs;
 
@@ -92,7 +93,7 @@ class CartsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
                 ),
                 subtitle: Text(
-                  order["price"],
+                  order["price"].toString(),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
               );
